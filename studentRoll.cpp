@@ -22,7 +22,7 @@ void StudentRoll::insertAtTail(const Student &s) {
 
 std::string StudentRoll::toString() const {
   if(this->head == NULL)
-    return "";
+    return "[]";
   Node* temp = this->head;
   std::string fullstr = "";
 
