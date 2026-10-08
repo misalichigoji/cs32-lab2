@@ -94,6 +94,8 @@ StudentRoll & StudentRoll::operator =(const StudentRoll &right ) {
     delete temp;
     temp = nexty;
   }
+  this->head = NULL;
+  this->tail = NULL;
   
   temp = right.head;
   while(temp != NULL)
