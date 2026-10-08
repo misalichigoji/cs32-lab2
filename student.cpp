@@ -3,34 +3,37 @@
 #include <cstring>
 
 Student::Student(const char * const name, int perm) {
-  this->setName("another stub");
-}
+  this->setName(name);
+  this->setPerm(perm);
+} //done
 
 int Student::getPerm() const {
-  return -42;
-}
+  return perm;
+} //done
 
 const char * const Student::getName() const {
-  return "stub";
-}
+  return name;
+} //done
 
 void Student::setPerm(const int permNumber) {
-}
+  this->perm = permNumber;
+}//done
 
 void Student::setName(const char * const name) {
-  this->name = new char[strlen("stub")+1];
-  strcpy(this->name,"stub");
-}
+  delete[] this->name;
+  this->name = new char[strlen(name)+1];
+  strcpy(this->name,name);
+} //done?
 
 
 Student::Student(const Student &orig) {
-  this->setName("yet another stub");
-  this->setPerm(-42);
-}
+  this->setName(orig.getName());
+  this->setPerm(orig.getPerm());
+} //done?
 
 Student::~Student() {
-
-}
+  delete[] this->name;
+} //done?
 
 Student & Student::operator=(const Student &right) {
   // The next two lines are standard, and you should keep them.
@@ -42,6 +45,10 @@ Student & Student::operator=(const Student &right) {
 
   // TODO... Here is where there is code missing that you need to 
   // fill in...
+  this->setName(right.getName());
+  this->setPerm(right.getPerm());
+
+
 
 
   // KEEP THE CODE BELOW THIS LINE
@@ -51,6 +58,7 @@ Student & Student::operator=(const Student &right) {
 }
 
 std::string Student::toString() const {
-  return "tostring stub";
+  std::string temp = this->getName();
+  return "[" + temp + "," + std::to_string(this->getPerm()) + "]";
 }
 
