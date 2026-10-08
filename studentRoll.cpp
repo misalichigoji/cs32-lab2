@@ -34,10 +34,9 @@ std::string StudentRoll::toString() const {
     temp = temp->next;
     tempy = temp->s->getName();
     tempy = "[" + tempy + "," + std::to_string(temp->s->getPerm()) + "]";  
-    fullstr += tempy;
-    if(temp->next != NULL)
-      fullstr += ",";
+    fullstr += tempy + ",";
   }
+  fullstr.pop_back();
   fullstr += "]";
   return fullstr;
 } //done?
