@@ -6,10 +6,17 @@ StudentRoll::StudentRoll() {
 }
 
 void StudentRoll::insertAtTail(const Student &s) {
-  this->tail->next = new Node;
-  this->tail = this->tail->next;
-  this->tail->s->setName(s.getName());
-  this->tail->s->setPerm(s.getPerm());
+  if(this->head == NULL)
+  {
+    this->head = new Node;
+    this->tail = this->head;
+  }
+  else
+  {
+    this->tail->next = new Node;
+    this->tail = this->tail->next;
+  }
+  this->tail->s = new Student(s);
   this->tail->next = nullptr;
 } //done?
 
@@ -31,40 +38,31 @@ std::string StudentRoll::toString() const {
 } //done?
 
 StudentRoll::StudentRoll(const StudentRoll &orig) {
-  if(orig.head == NULL)
-  {
-    this->head = NULL;
-    this->tail = NULL;
-    return;
-  }
+
+  this->head = NULL;
+  this->tail = NULL;
+
   Node* temp = orig.head;
-  this->head = new Node;
-  this->head->s->setName(orig.head->s->getName());
-  this->head->s->setPerm(orig.head->s->getPerm());
+
   while(temp != orig.tail)
   {
-    temp = temp->next;
     this->insertAtTail(*temp->s);
+    temp = temp->next;
   }
-}//done?
+}//done??
 
 StudentRoll::~StudentRoll() {
-  if(this->head == NULL)
-    return;
 
   Node* temp = this->head;
-  delete temp->s;
-  this->head = temp;
-  this->head = this->head->next;
-  delete temp;
   while(temp != this->tail)
   {
-    temp = this->head;
+    Node* nexty = temp->next;
     delete temp->s;
-    this->head = temp;
-    this->head = this->head->next;
     delete temp;
+    temp = nexty;
   }
+  head = NULL;
+  tail = NULL;
 }//done?
 
 StudentRoll & StudentRoll::operator =(const StudentRoll &right ) {
@@ -77,27 +75,22 @@ StudentRoll & StudentRoll::operator =(const StudentRoll &right ) {
 
   // TODO... Here is where there is code missing that you need to 
   // fill in...
-  if(this->head == NULL)
+  
+  Node* temp = this->head;
+  while(temp !=)
   {
-    this->head = NULL;
-    this->tail = NULL; 
-    return *this;
+    Node* nexty = temp->next;
+    delete temp->s;
+    delete temp;
+    temp = nexty;
   }
-
-  Node* tempr = right.head;
-  this->head = new Node;
-  Node* templ = this->head;
-  templ->s = tempr->s;
-  while(tempr != right.tail)
+  
+  temp = right.head;
+  while(temp != NULL)
   {
-    tempr = tempr->next;
-    templ->next = new Node;
-    templ = templ->next;
-    templ->s = tempr->s;
+    insertAtTail(*temp->s);
+    temp = temp->next;
   }
-  this->tail = templ;
-  templ->next = NULL;
-  // KEEP THE CODE BELOW THIS LINE
   // Overloaded = should end with this line, despite what the textbook says.
   return (*this); 
   
