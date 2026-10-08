@@ -44,7 +44,7 @@ StudentRoll::StudentRoll(const StudentRoll &orig) {
 
   Node* temp = orig.head;
 
-  while(temp != orig.tail)
+  while(temp != NULL)
   {
     this->insertAtTail(*temp->s);
     temp = temp->next;
@@ -60,6 +60,11 @@ StudentRoll::~StudentRoll() {
     delete temp->s;
     delete temp;
     temp = nexty;
+  }
+  if(temp != NULL)
+  {
+    delete temp->s;
+    delete temp;
   }
   head = NULL;
   tail = NULL;
@@ -77,7 +82,7 @@ StudentRoll & StudentRoll::operator =(const StudentRoll &right ) {
   // fill in...
   
   Node* temp = this->head;
-  while(temp !=)
+  while(temp != NULL)
   {
     Node* nexty = temp->next;
     delete temp->s;
