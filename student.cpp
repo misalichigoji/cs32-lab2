@@ -28,6 +28,7 @@
 
 
   Student::Student(const Student &orig) {
+    this->name = nullptr;
     this->setName(orig.getName());
     this->setPerm(orig.getPerm());
   } //done?
