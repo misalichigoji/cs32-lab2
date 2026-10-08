@@ -24,7 +24,7 @@ std::string StudentRoll::toString() const {
   if(this->head == NULL)
     return "[]";
   Node* temp = this->head;
-  std::string fullstr = "";
+  std::string fullstr = "[";
 
   std::string tempy = temp->s->getName();
   tempy = "[" + tempy + "," + std::to_string(temp->s->getPerm()) + "]";  
@@ -36,6 +36,7 @@ std::string StudentRoll::toString() const {
     tempy = "[" + tempy + "," + std::to_string(temp->s->getPerm()) + "]";  
     fullstr += tempy;
   }
+  fullstr += "]";
   return fullstr;
 } //done?
 
